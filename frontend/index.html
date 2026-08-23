@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Citizen Grievance Portal</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
+
+<header class="header">
+
+    <div class="brand">
+
+        <div class="ap-logo">
+
+            <div class="ap-logo-top"></div>
+
+            <div class="ap-logo-middle">
+                <span>AP</span>
+            </div>
+
+            <div class="ap-logo-bottom"></div>
+
+        </div>
+
+
+        <div class="brand-text">
+
+            <h1 id="portalTitle">
+                Citizen Grievance Portal
+            </h1>
+
+            <p id="portalSubtitle">
+                Government Services • Andhra Pradesh
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="navigation">
+
+        <button
+            class="nav-button active"
+            id="homeNav"
+            onclick="showSection('home')">
+
+            Home
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            id="complaintNav"
+            onclick="showSection('complaint')">
+
+            Submit Complaint
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            id="trackNav"
+            onclick="showSection('track')">
+
+            Track Complaint
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            id="dashboardNav"
+            onclick="showSection('dashboard')">
+
+            Officer Dashboard
+
+        </button>
+
+
+        <!-- LANGUAGE -->
+
+        <select
+            id="languageSelect"
+            class="language-select"
+            onchange="changeLanguage(this.value)">
+
+            <option value="en">
+                English
+            </option>
+
+            <option value="hi">
+                हिंदी
+            </option>
+
+            <option value="te">
+                తెలుగు
+            </option>
+
+        </select>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     HOME
+     ===================================================== -->
+
+<main>
+
+
+<section
+    id="home"
+    class="section active">
+
+
+    <!-- HERO -->
+
+    <div class="hero">
+
+        <div class="hero-content">
+
+            <span
+                class="small-title"
+                id="heroSmallTitle">
+
+                CITIZEN SERVICES
+
+            </span>
+
+
+            <h2 id="heroTitle">
+
+                Citizen Grievance
+                Management Portal
+
+            </h2>
+
+
+            <p id="heroDescription">
+
+                Report civic issues, receive a unique
+                complaint ID, and track your grievance
+                from submission to resolution.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <button
+                    class="primary-button"
+                    onclick="showSection('complaint')"
+                    id="submitHeroButton">
+
+                    Submit a Complaint
+
+                </button>
+
+
+                <button
+                    class="secondary-button"
+                    onclick="showSection('track')"
+                    id="trackHeroButton">
+
+                    Track Complaint
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- SERVICES -->
+
+    <section class="services-section">
+
+        <div class="section-heading">
+
+            <span>
+                CITIZEN SERVICES
+            </span>
+
+            <h2 id="servicesTitle">
+                How can we help?
+            </h2>
+
+            <p id="servicesDescription">
+                Use the portal to report issues and
+                monitor the progress of your grievance.
+            </p>
+
+        </div>
+
+
+        <div class="services-grid">
+
+
+            <div class="service-card">
+
+                <div class="service-number">
+                    01
+                </div>
+
+                <h3 id="serviceOneTitle">
+                    Submit Complaint
+                </h3>
+
+                <p id="serviceOneText">
+
+                    Report civic problems such as
+                    roads, sanitation, water supply,
+                    electricity and other public services.
+
+                </p>
+
+                <button
+                    class="card-button"
+                    onclick="showSection('complaint')">
+
+                    Get Started
+
+                </button>
+
+            </div>
+
+
+
+            <div class="service-card">
+
+                <div class="service-number">
+                    02
+                </div>
+
+                <h3 id="serviceTwoTitle">
+                    Track Complaint
+                </h3>
+
+                <p id="serviceTwoText">
+
+                    Enter your complaint ID to view
+                    the current status of your grievance.
+
+                </p>
+
+                <button
+                    class="card-button"
+                    onclick="showSection('track')">
+
+                    Track Now
+
+                </button>
+
+            </div>
+
+
+
+            <div class="service-card">
+
+                <div class="service-number">
+                    03
+                </div>
+
+                <h3 id="serviceThreeTitle">
+                    Grievance Monitoring
+                </h3>
+
+                <p id="serviceThreeText">
+
+                    View overall grievance statistics
+                    including pending, progressing
+                    and completed complaints.
+
+                </p>
+
+                <button
+                    class="card-button"
+                    onclick="showSection('dashboard')">
+
+                    View Dashboard
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- PUBLIC STATISTICS -->
+
+    <section class="statistics-section">
+
+        <div class="section-heading">
+
+            <span>
+                GRIEVANCE STATUS
+            </span>
+
+            <h2 id="statisticsTitle">
+                Public Grievance Statistics
+            </h2>
+
+            <p id="statisticsDescription">
+                Current overview of grievances received
+                through the portal.
+            </p>
+
+        </div>
+
+
+        <div class="statistics-grid">
+
+
+            <div class="stat-card total-card">
+
+                <div class="stat-icon">
+                    #
+                </div>
+
+                <div>
+
+                    <span id="totalLabel">
+                        Total
+                    </span>
+
+                    <strong id="publicTotal">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card completed-card">
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <span id="completedLabel">
+                        Completed
+                    </span>
+
+                    <strong id="publicCompleted">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card progress-card">
+
+                <div class="stat-icon">
+                    ↻
+                </div>
+
+                <div>
+
+                    <span id="progressLabel">
+                        In Progress
+                    </span>
+
+                    <strong id="publicProgress">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card pending-card">
+
+                <div class="stat-icon">
+                    !
+                </div>
+
+                <div>
+
+                    <span id="pendingLabel">
+                        Pending
+                    </span>
+
+                    <strong id="publicPending">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</section>
+
+
+
+<!-- =====================================================
+     SUBMIT COMPLAINT
+     ===================================================== -->
+
+<section
+    id="complaint"
+    class="section">
+
+
+    <div class="page-heading">
+
+        <span>
+            CITIZEN SERVICES
+        </span>
+
+        <h2 id="complaintPageTitle">
+            Submit a Complaint
+        </h2>
+
+        <p id="complaintPageDescription">
+
+            Provide the details below so your grievance
+            can be registered and forwarded for action.
+
+        </p>
+
+    </div>
+
+
+
+    <div class="form-card">
+
+
+        <form
+            id="complaintForm"
+            onsubmit="submitComplaint(event)">
+
+
+            <!-- NAME -->
+
+            <div class="form-group">
+
+                <label for="citizenName"
+                       id="nameLabel">
+
+                    Citizen Name
+
+                </label>
+
+                <input
+                    type="text"
+                    id="citizenName"
+                    required
+                    placeholder="Enter your name">
+
+            </div>
+
+
+
+            <!-- MOBILE -->
+
+            <div class="form-group">
+
+                <label for="mobile"
+                       id="mobileLabel">
+
+                    Mobile Number
+
+                </label>
+
+                <input
+                    type="tel"
+                    id="mobile"
+                    required
+                    placeholder="Enter mobile number">
+
+            </div>
+
+
+
+            <!-- CATEGORY -->
+
+            <div class="form-group">
+
+                <label for="category"
+                       id="categoryLabel">
+
+                    Complaint Category
+
+                </label>
+
+                <select
+                    id="category"
+                    required>
+
+                    <option value="">
+                        Select category
+                    </option>
+
+                    <option value="Road">
+                        Road / Street
+                    </option>
+
+                    <option value="Water">
+                        Water Supply
+                    </option>
+
+                    <option value="Sanitation">
+                        Sanitation
+                    </option>
+
+                    <option value="Electricity">
+                        Electricity
+                    </option>
+
+                    <option value="Drainage">
+                        Drainage
+                    </option>
+
+                    <option value="Street Lights">
+                        Street Lights
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- LOCATION -->
+
+            <div class="form-group">
+
+                <label for="location"
+                       id="locationLabel">
+
+                    Location
+
+                </label>
+
+                <input
+                    type="text"
+                    id="location"
+                    required
+                    placeholder="Enter location">
+
+            </div>
+
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+
+                <label for="description"
+                       id="descriptionLabel">
+
+                    Complaint Description
+
+                </label>
+
+                <textarea
+                    id="description"
+                    rows="6"
+                    required
+                    placeholder="Describe your complaint"></textarea>
+
+            </div>
+
+
+
+            <!-- IMAGE -->
+
+            <div class="form-group">
+
+                <label for="complaintImage"
+                       id="imageLabel">
+
+                    Upload Image
+
+                </label>
+
+                <p class="field-help"
+                   id="imageHelp">
+
+                    You may upload an image showing
+                    the issue.
+
+                </p>
+
+                <input
+                    type="file"
+                    id="complaintImage"
+                    accept="image/*"
+                    onchange="previewImage(event)">
+
+            </div>
+
+
+
+            <!-- IMAGE PREVIEW -->
+
+            <div
+                id="imagePreviewContainer"
+                class="image-preview-container">
+
+                <img
+                    id="imagePreview"
+                    class="image-preview"
+                    alt="Complaint image preview">
+
+            </div>
+
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="primary-button submit-button"
+                id="submitComplaintButton">
+
+                Submit Complaint
+
+            </button>
+
+
+        </form>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     TRACK COMPLAINT
+     ===================================================== -->
+
+<section
+    id="track"
+    class="section">
+
+
+    <div class="page-heading">
+
+        <span>
+            GRIEVANCE TRACKING
+        </span>
+
+        <h2 id="trackPageTitle">
+            Track Your Complaint
+        </h2>
+
+        <p id="trackPageDescription">
+
+            Enter your complaint ID to view the
+            current grievance status.
+
+        </p>
+
+    </div>
+
+
+
+    <div class="track-card">
+
+        <label
+            for="complaintId"
+            id="complaintIdLabel">
+
+            Complaint ID
+
+        </label>
+
+
+        <input
+            type="text"
+            id="complaintId"
+            placeholder="Example: GRV-1001">
+
+
+        <button
+            class="primary-button"
+            onclick="trackComplaint()"
+            id="trackButton">
+
+            Track Complaint
+
+        </button>
+
+
+        <div
+            id="trackResult"
+            class="track-result">
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     OFFICER DASHBOARD
+     ===================================================== -->
+
+<section
+    id="dashboard"
+    class="section dashboard-section">
+
+
+    <!-- DASHBOARD HEADER -->
+
+    <div class="dashboard-header">
+
+        <div>
+
+            <span class="dashboard-label">
+                ANDHRA PRADESH GOVERNMENT SERVICES
+            </span>
+
+            <h2 id="dashboardTitle">
+                Officer Dashboard
+            </h2>
+
+            <p id="dashboardDescription">
+
+                Citizen Grievance Monitoring
+                and Management System
+
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-status">
+
+            <span class="status-dot"></span>
+
+            <span id="systemOnline">
+                System Online
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DASHBOARD STATISTICS -->
+
+    <div class="dashboard-stats">
+
+
+        <div class="dashboard-card total-card">
+
+            <div class="dashboard-icon">
+                #
+            </div>
+
+            <div>
+
+                <span>
+                    Total Complaints
+                </span>
+
+                <strong id="dashboardTotal">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="dashboard-card pending-card">
+
+            <div class="dashboard-icon">
+                !
+            </div>
+
+            <div>
+
+                <span>
+                    Pending
+                </span>
+
+                <strong id="dashboardPending">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="dashboard-card progress-card">
+
+            <div class="dashboard-icon">
+                ↻
+            </div>
+
+            <div>
+
+                <span>
+                    In Progress
+                </span>
+
+                <strong id="dashboardProgress">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="dashboard-card completed-card">
+
+            <div class="dashboard-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <span>
+                    Completed
+                </span>
+
+                <strong id="dashboardCompleted">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DASHBOARD TABLE -->
+
+    <div class="dashboard-table-container">
+
+
+        <div class="table-header">
+
+            <div>
+
+                <h3>
+                    Recent Grievances
+                </h3>
+
+                <p>
+                    Monitor registered citizen complaints.
+                </p>
+
+            </div>
+
+
+            <select
+                id="statusFilter"
+                class="dashboard-filter"
+                onchange="filterComplaints()">
+
+                <option value="All">
+                    All Complaints
+                </option>
+
+                <option value="Pending">
+                    Pending
+                </option>
+
+                <option value="In Progress">
+                    In Progress
+                </option>
+
+                <option value="Completed">
+                    Completed
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <div class="table-wrapper">
+
+            <table class="complaints-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Complaint ID
+                        </th>
+
+                        <th>
+                            Citizen
+                        </th>
+
+                        <th>
+                            Category
+                        </th>
+
+                        <th>
+                            Location
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="complaintTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer>
+
+    <h3>
+        Citizen Grievance Portal
+    </h3>
+
+    <p>
+        Government Services • Andhra Pradesh
+    </p>
+
+    <p>
+        © 2026 Citizen Grievance Portal
+    </p>
+
+</footer>
+
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
