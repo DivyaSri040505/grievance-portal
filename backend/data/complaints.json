@@ -18,8 +18,9 @@
     "location": "kadapa",
     "description": "Street Light problems",
     "image": null,
-    "status": "Pending",
-    "createdAt": "2026-08-23T12:25:40.403Z"
+    "status": "In Progress",
+    "createdAt": "2026-08-23T12:25:40.403Z",
+    "updatedAt": "2026-09-01T17:42:39.045Z"
   },
   {
     "id": "GRV-4997",
@@ -29,8 +30,9 @@
     "location": "kamalapuram",
     "description": "road problem",
     "image": null,
-    "status": "Pending",
-    "createdAt": "2026-08-23T12:37:26.632Z"
+    "status": "In Progress",
+    "createdAt": "2026-08-23T12:37:26.632Z",
+    "updatedAt": "2026-09-01T17:42:34.762Z"
   },
   {
     "id": "GRV-6840",
@@ -40,7 +42,20 @@
     "location": "Tirupati",
     "description": "No electricity",
     "image": null,
-    "status": "Pending",
-    "createdAt": "2026-08-29T15:17:23.550Z"
+    "status": "Completed",
+    "createdAt": "2026-08-29T15:17:23.550Z",
+    "updatedAt": "2026-09-01T17:42:30.592Z"
+  },
+  {
+    "id": "GRV-9646",
+    "citizenName": "Test User",
+    "mobile": "9876543210",
+    "category": "Road",
+    "location": "Vijayawada",
+    "description": "Test complaint for portal verification",
+    "image": null,
+    "status": "In Progress",
+    "createdAt": "2026-09-01T17:24:56.647Z",
+    "updatedAt": "2026-09-01T17:42:25.063Z"
   }
 ]

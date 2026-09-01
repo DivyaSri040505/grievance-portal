@@ -242,7 +242,6 @@ function changeLanguage(language) {
     localStorage.setItem("selectedLanguage", language);
 
     document.documentElement.lang = language;
-
 }
 
 
@@ -252,10 +251,13 @@ function changeLanguage(language) {
 
 function showSection(sectionId) {
 
-    const sections = document.querySelectorAll(".section");
+    const sections =
+        document.querySelectorAll(".section");
 
     sections.forEach(function (section) {
+
         section.classList.remove("active");
+
     });
 
 
@@ -263,7 +265,9 @@ function showSection(sectionId) {
         document.getElementById(sectionId);
 
     if (selectedSection) {
+
         selectedSection.classList.add("active");
+
     }
 
 
@@ -271,7 +275,9 @@ function showSection(sectionId) {
         document.querySelectorAll(".nav-button");
 
     navButtons.forEach(function (button) {
+
         button.classList.remove("active");
+
     });
 
 
@@ -286,26 +292,36 @@ function showSection(sectionId) {
 
 
     const activeNav =
-        document.getElementById(navMap[sectionId]);
+        document.getElementById(
+            navMap[sectionId]
+        );
+
 
     if (activeNav) {
+
         activeNav.classList.add("active");
+
     }
 
 
     /*
-       Whenever Officer Dashboard is opened,
-       get the latest complaints from backend.
+       Load latest complaints whenever
+       Officer Dashboard is opened.
     */
 
     if (sectionId === "dashboard") {
+
         loadComplaints();
+
     }
 
 
     window.scrollTo({
+
         top: 0,
+
         behavior: "smooth"
+
     });
 
 }
@@ -317,12 +333,15 @@ function showSection(sectionId) {
 
 function previewImage(event) {
 
-    const file = event.target.files[0];
+    const file =
+        event.target.files[0];
+
 
     const container =
         document.getElementById(
             "imagePreviewContainer"
         );
+
 
     const preview =
         document.getElementById(
@@ -335,31 +354,39 @@ function previewImage(event) {
         container.style.display = "none";
 
         return;
+
     }
 
 
     if (!file.type.startsWith("image/")) {
 
-        alert("Please select an image file.");
+        alert(
+            "Please select an image file."
+        );
 
         event.target.value = "";
 
         container.style.display = "none";
 
         return;
+
     }
 
 
-    const reader = new FileReader();
+    const reader =
+        new FileReader();
 
 
-    reader.onload = function (e) {
+    reader.onload =
+        function (e) {
 
-        preview.src = e.target.result;
+            preview.src =
+                e.target.result;
 
-        container.style.display = "block";
+            container.style.display =
+                "block";
 
-    };
+        };
 
 
     reader.readAsDataURL(file);
@@ -377,22 +404,39 @@ async function submitComplaint(event) {
 
 
     const name =
-        document.getElementById("citizenName").value.trim();
+        document.getElementById(
+            "citizenName"
+        ).value.trim();
+
 
     const mobile =
-        document.getElementById("mobile").value.trim();
+        document.getElementById(
+            "mobile"
+        ).value.trim();
+
 
     const category =
-        document.getElementById("category").value;
+        document.getElementById(
+            "category"
+        ).value;
+
 
     const location =
-        document.getElementById("location").value.trim();
+        document.getElementById(
+            "location"
+        ).value.trim();
+
 
     const description =
-        document.getElementById("description").value.trim();
+        document.getElementById(
+            "description"
+        ).value.trim();
+
 
     const imageInput =
-        document.getElementById("complaintImage");
+        document.getElementById(
+            "complaintImage"
+        );
 
 
     if (
@@ -408,45 +452,43 @@ async function submitComplaint(event) {
         );
 
         return;
+
     }
 
 
-    const formData = new FormData();
+    const formData =
+        new FormData();
 
-
-    /*
-       These names must match the backend.
-    */
 
     formData.append(
         "citizenName",
         name
     );
 
+
     formData.append(
         "mobile",
         mobile
     );
+
 
     formData.append(
         "category",
         category
     );
 
+
     formData.append(
         "location",
         location
     );
+
 
     formData.append(
         "description",
         description
     );
 
-
-    /*
-       Add image if user selected one.
-    */
 
     if (
         imageInput &&
@@ -487,10 +529,6 @@ async function submitComplaint(event) {
         }
 
 
-        /*
-           Support common backend response formats.
-        */
-
         const complaint =
             data.complaint ||
             data;
@@ -508,47 +546,49 @@ async function submitComplaint(event) {
         );
 
 
-        /*
-           Reset form.
-        */
-
-        document
-            .getElementById("complaintForm")
-            .reset();
+        const complaintForm =
+            document.getElementById(
+                "complaintForm"
+            );
 
 
-        /*
-           Hide image preview.
-        */
+        if (complaintForm) {
 
-        document
-            .getElementById(
+            complaintForm.reset();
+
+        }
+
+
+        const imagePreviewContainer =
+            document.getElementById(
                 "imagePreviewContainer"
-            )
-            .style.display = "none";
+            );
 
 
-        /*
-           Put the new complaint ID
-           into Track Complaint box.
-        */
+        if (imagePreviewContainer) {
 
-        document
-            .getElementById("complaintId")
-            .value = complaintId;
+            imagePreviewContainer.style.display =
+                "none";
+
+        }
 
 
-        /*
-           IMPORTANT:
-           Reload complaints from backend.
-        */
+        const complaintIdInput =
+            document.getElementById(
+                "complaintId"
+            );
+
+
+        if (complaintIdInput) {
+
+            complaintIdInput.value =
+                complaintId;
+
+        }
+
 
         await loadComplaints();
 
-
-        /*
-           Open Track Complaint section.
-        */
 
         showSection("track");
 
@@ -598,29 +638,17 @@ async function loadComplaints() {
             await response.json();
 
 
-        /*
-           Backend might return:
-
-           [
-              {...},
-              {...}
-           ]
-
-           OR:
-
-           {
-              complaints: [...]
-           }
-        */
-
         if (Array.isArray(data)) {
 
-            complaints = data;
+            complaints =
+                data;
 
         }
 
         else if (
-            Array.isArray(data.complaints)
+            Array.isArray(
+                data.complaints
+            )
         ) {
 
             complaints =
@@ -641,16 +669,7 @@ async function loadComplaints() {
         );
 
 
-        /*
-           Update statistics.
-        */
-
         updateStatistics();
-
-
-        /*
-           Update dashboard table.
-        */
 
         renderComplaintTable();
 
@@ -662,10 +681,6 @@ async function loadComplaints() {
             error
         );
 
-
-        /*
-           Don't put old fake complaints back.
-        */
 
         complaints = [];
 
@@ -689,75 +704,154 @@ function updateStatistics() {
 
 
     const pending =
-        complaints.filter(function (complaint) {
+        complaints.filter(
+            function (complaint) {
 
-            return complaint.status === "Pending";
+                return (
+                    complaint.status ===
+                    "Pending"
+                );
 
-        }).length;
+            }
+        ).length;
 
 
     const progress =
-        complaints.filter(function (complaint) {
+        complaints.filter(
+            function (complaint) {
 
-            return complaint.status === "In Progress";
+                return (
+                    complaint.status ===
+                    "In Progress"
+                );
 
-        }).length;
+            }
+        ).length;
 
 
     const completed =
-        complaints.filter(function (complaint) {
+        complaints.filter(
+            function (complaint) {
 
-            return complaint.status === "Completed";
+                return (
+                    complaint.status ===
+                    "Completed"
+                );
 
-        }).length;
+            }
+        ).length;
 
 
     /*
        PUBLIC STATISTICS
     */
 
-    document.getElementById(
-        "publicTotal"
-    ).textContent = total;
+    const publicTotal =
+        document.getElementById(
+            "publicTotal"
+        );
+
+    if (publicTotal) {
+
+        publicTotal.textContent =
+            total;
+
+    }
 
 
-    document.getElementById(
-        "publicPending"
-    ).textContent = pending;
+    const publicPending =
+        document.getElementById(
+            "publicPending"
+        );
+
+    if (publicPending) {
+
+        publicPending.textContent =
+            pending;
+
+    }
 
 
-    document.getElementById(
-        "publicProgress"
-    ).textContent = progress;
+    const publicProgress =
+        document.getElementById(
+            "publicProgress"
+        );
+
+    if (publicProgress) {
+
+        publicProgress.textContent =
+            progress;
+
+    }
 
 
-    document.getElementById(
-        "publicCompleted"
-    ).textContent = completed;
+    const publicCompleted =
+        document.getElementById(
+            "publicCompleted"
+        );
+
+    if (publicCompleted) {
+
+        publicCompleted.textContent =
+            completed;
+
+    }
 
 
     /*
        OFFICER DASHBOARD STATISTICS
     */
 
-    document.getElementById(
-        "dashboardTotal"
-    ).textContent = total;
+    const dashboardTotal =
+        document.getElementById(
+            "dashboardTotal"
+        );
+
+    if (dashboardTotal) {
+
+        dashboardTotal.textContent =
+            total;
+
+    }
 
 
-    document.getElementById(
-        "dashboardPending"
-    ).textContent = pending;
+    const dashboardPending =
+        document.getElementById(
+            "dashboardPending"
+        );
+
+    if (dashboardPending) {
+
+        dashboardPending.textContent =
+            pending;
+
+    }
 
 
-    document.getElementById(
-        "dashboardProgress"
-    ).textContent = progress;
+    const dashboardProgress =
+        document.getElementById(
+            "dashboardProgress"
+        );
+
+    if (dashboardProgress) {
+
+        dashboardProgress.textContent =
+            progress;
+
+    }
 
 
-    document.getElementById(
-        "dashboardCompleted"
-    ).textContent = completed;
+    const dashboardCompleted =
+        document.getElementById(
+            "dashboardCompleted"
+        );
+
+    if (dashboardCompleted) {
+
+        dashboardCompleted.textContent =
+            completed;
+
+    }
 
 }
 
@@ -775,14 +869,22 @@ function renderComplaintTable() {
 
 
     if (!tableBody) {
+
         return;
+
     }
 
 
-    const filter =
+    const filterElement =
         document.getElementById(
             "statusFilter"
-        ).value;
+        );
+
+
+    const filter =
+        filterElement
+            ? filterElement.value
+            : "All";
 
 
     let filteredComplaints =
@@ -827,8 +929,11 @@ function renderComplaintTable() {
 
                 <td
                     colspan="6"
-                    style="text-align:center;
-                           padding:30px;">
+                    style="
+                        text-align:center;
+                        padding:30px;
+                    "
+                >
 
                     No complaints found.
 
@@ -839,6 +944,7 @@ function renderComplaintTable() {
         `;
 
         return;
+
     }
 
 
@@ -850,111 +956,272 @@ function renderComplaintTable() {
         [...filteredComplaints].reverse();
 
 
-    latest.forEach(function (complaint) {
+    latest.forEach(
+        function (complaint) {
 
-        const row =
-            document.createElement("tr");
+            const row =
+                document.createElement(
+                    "tr"
+                );
 
 
-        let statusClass = "pending";
+            const complaintId =
+                complaint.id ||
+                complaint.complaintId ||
+                "";
 
 
-        if (
-            complaint.status ===
-            "Completed"
-        ) {
+            const citizen =
+                complaint.citizenName ||
+                complaint.citizen ||
+                complaint.name ||
+                "";
 
-            statusClass = "completed";
+
+            const category =
+                complaint.category ||
+                "";
+
+
+            const location =
+                complaint.location ||
+                "";
+
+
+            const date =
+                complaint.date ||
+                complaint.createdAt ||
+                "";
+
+
+            const status =
+                complaint.status ||
+                "Pending";
+
+
+            row.innerHTML = `
+
+                <td>
+                    <strong>
+                        ${escapeHTML(
+                            complaintId
+                        )}
+                    </strong>
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        citizen
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        category
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        location
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        formatDate(date)
+                    )}
+                </td>
+
+                <td>
+
+                    <select
+                        class="status-select"
+                        onchange="updateComplaintStatus(
+                            '${escapeHTML(complaintId)}',
+                            this.value
+                        )"
+                    >
+
+                        <option
+                            value="Pending"
+                            ${
+                                status === "Pending"
+                                    ? "selected"
+                                    : ""
+                            }
+                        >
+                            Pending
+                        </option>
+
+                        <option
+                            value="In Progress"
+                            ${
+                                status === "In Progress"
+                                    ? "selected"
+                                    : ""
+                            }
+                        >
+                            In Progress
+                        </option>
+
+                        <option
+                            value="Completed"
+                            ${
+                                status === "Completed"
+                                    ? "selected"
+                                    : ""
+                            }
+                        >
+                            Completed
+                        </option>
+
+                    </select>
+
+                </td>
+
+            `;
+
+
+            tableBody.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   UPDATE COMPLAINT STATUS
+   ========================================================= */
+
+async function updateComplaintStatus(
+    complaintId,
+    newStatus
+) {
+
+    try {
+
+        console.log(
+            "Updating:",
+            complaintId,
+            "to:",
+            newStatus
+        );
+
+
+        const response =
+            await fetch(
+                `${API_URL}/${complaintId}/status`,
+                {
+                    method: "PATCH",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        status:
+                            newStatus
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.message ||
+                "Failed to update complaint status."
+            );
 
         }
 
-        else if (
-            complaint.status ===
-            "In Progress"
-        ) {
 
-            statusClass = "progress";
+        /*
+           Update local complaint.
+        */
+
+        const complaint =
+            complaints.find(
+                function (item) {
+
+                    const id =
+                        item.id ||
+                        item.complaintId ||
+                        "";
+
+                    return (
+                        String(id)
+                            .toUpperCase() ===
+                        String(complaintId)
+                            .toUpperCase()
+                    );
+
+                }
+            );
+
+
+        if (complaint) {
+
+            complaint.status =
+                newStatus;
 
         }
 
 
-        const complaintId =
-            complaint.id ||
-            complaint.complaintId ||
-            "";
+        /*
+           Update dashboard numbers.
+        */
+
+        updateStatistics();
 
 
-        const citizen =
-            complaint.citizenName ||
-            complaint.citizen ||
-            complaint.name ||
-            "";
+        /*
+           Refresh table.
+        */
+
+        renderComplaintTable();
 
 
-        const category =
-            complaint.category ||
-            "";
+        alert(
+            "Complaint " +
+            complaintId +
+            " status updated to " +
+            newStatus +
+            "."
+        );
 
 
-        const location =
-            complaint.location ||
-            "";
+    } catch (error) {
+
+        console.error(
+            "Status update error:",
+            error
+        );
 
 
-        const date =
-            complaint.date ||
-            complaint.createdAt ||
-            "";
+        alert(
+            "Could not update complaint status.\n\n" +
+            error.message
+        );
 
 
-        const status =
-            complaint.status ||
-            "Pending";
+        /*
+           Reload data from backend
+           if update failed.
+        */
 
+        await loadComplaints();
 
-        row.innerHTML = `
-
-            <td>
-                <strong>
-                    ${escapeHTML(complaintId)}
-                </strong>
-            </td>
-
-            <td>
-                ${escapeHTML(citizen)}
-            </td>
-
-            <td>
-                ${escapeHTML(category)}
-            </td>
-
-            <td>
-                ${escapeHTML(location)}
-            </td>
-
-            <td>
-                ${escapeHTML(
-                    formatDate(date)
-                )}
-            </td>
-
-            <td>
-
-                <span
-                    class="status ${statusClass}">
-
-                    ${escapeHTML(status)}
-
-                </span>
-
-            </td>
-
-        `;
-
-
-        tableBody.appendChild(row);
-
-    });
+    }
 
 }
 
@@ -988,21 +1255,33 @@ async function trackComplaint() {
         );
 
 
+    if (!input || !result) {
+
+        return;
+
+    }
+
+
     const complaintId =
         input.value.trim();
 
 
     if (!complaintId) {
 
-        result.style.display = "block";
+        result.style.display =
+            "block";
+
 
         result.innerHTML = `
+
             <strong>
                 Please enter a complaint ID.
             </strong>
+
         `;
 
         return;
+
     }
 
 
@@ -1022,6 +1301,7 @@ async function trackComplaint() {
                     complaint.complaintId ||
                     "";
 
+
                 return (
                     String(id).toUpperCase() ===
                     complaintId.toUpperCase()
@@ -1031,7 +1311,8 @@ async function trackComplaint() {
         );
 
 
-    result.style.display = "block";
+    result.style.display =
+        "block";
 
 
     if (!found) {
@@ -1049,6 +1330,7 @@ async function trackComplaint() {
         `;
 
         return;
+
     }
 
 
@@ -1067,12 +1349,24 @@ async function trackComplaint() {
         "pending";
 
 
-    if (status === "Completed") {
-        statusClass = "completed";
+    if (
+        status ===
+        "Completed"
+    ) {
+
+        statusClass =
+            "completed";
+
     }
 
-    else if (status === "In Progress") {
-        statusClass = "progress";
+    else if (
+        status ===
+        "In Progress"
+    ) {
+
+        statusClass =
+            "progress";
+
     }
 
 
@@ -1111,7 +1405,8 @@ async function trackComplaint() {
             </strong>
 
             ${escapeHTML(
-                found.category || ""
+                found.category ||
+                ""
             )}
 
         </div>
@@ -1124,7 +1419,8 @@ async function trackComplaint() {
             </strong>
 
             ${escapeHTML(
-                found.location || ""
+                found.location ||
+                ""
             )}
 
         </div>
@@ -1137,9 +1433,12 @@ async function trackComplaint() {
             </strong>
 
             <span
-                class="status ${statusClass}">
+                class="status ${statusClass}"
+            >
 
-                ${escapeHTML(status)}
+                ${escapeHTML(
+                    status
+                )}
 
             </span>
 
@@ -1157,14 +1456,11 @@ async function trackComplaint() {
 function formatDate(dateValue) {
 
     if (!dateValue) {
+
         return "";
+
     }
 
-
-    /*
-       If backend already gives
-       YYYY-MM-DD, keep it.
-    */
 
     if (
         /^\d{4}-\d{2}-\d{2}$/.test(
@@ -1217,15 +1513,30 @@ function escapeHTML(value) {
 
     return String(value)
 
-        .replaceAll("&", "&amp;")
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
 
-        .replaceAll("<", "&lt;")
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
 
-        .replaceAll(">", "&gt;")
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
 
-        .replaceAll('"', "&quot;")
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
 
-        .replaceAll("'", "&#039;");
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
 
 }
 
