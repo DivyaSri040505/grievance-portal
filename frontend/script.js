@@ -604,7 +604,7 @@ async function submitComplaint(event) {
         alert(
             "Could not connect to the backend.\n\n" +
             "Please make sure your Node.js server is running at:\n" +
-            "http://localhost:5000"
+            "http://grievance-portal-k59t.onrender.com"
         );
 
     }
