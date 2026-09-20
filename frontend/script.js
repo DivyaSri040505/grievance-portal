@@ -3,7 +3,7 @@
    COMPLETE SCRIPT.JS
    ========================================================= */
 
-const API_URL = "http://grievance-portal-k59t.onrender.com/api/complaints";
+const API_URL = "https://grievance-portal-k59t.onrender.com/api/complaints";
 
 let complaints = [];
 
@@ -604,7 +604,7 @@ async function submitComplaint(event) {
         alert(
             "Could not connect to the backend.\n\n" +
             "Please make sure your Node.js server is running at:\n" +
-            "http://grievance-portal-k59t.onrender.com"
+            "https://grievance-portal-k59t.onrender.com"
         );
 
     }
