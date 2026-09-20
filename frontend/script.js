@@ -3,7 +3,7 @@
    COMPLETE SCRIPT.JS
    ========================================================= */
 
-const API_URL = "http://localhost:5000/api/complaints";
+const API_URL = "http://grievance-portal-k59t.onrender.com/api/complaints";
 
 let complaints = [];
 
